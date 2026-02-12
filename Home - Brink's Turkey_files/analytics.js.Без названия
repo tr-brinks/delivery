@@ -1,0 +1,440 @@
+$(document).ready(function () {
+    if (!$('.has-control-menu').length) {
+        var isInternalFormSubmit = false;
+        window.amplitudeReady = false;
+        window.amplitudeOnReadyQueue = [];
+        if (window.amplitudeApiKey && window.amplitudeApiKey.length > 0) {
+            (function (e, t) {
+              var r = e.amplitude || { _q: [], _iq: {} };
+              if (r.invoked) {
+                e.console &&
+                  console.error &&
+                  console.error("Amplitude snippet has already been loaded.");
+                return;
+              }
+              r.invoked = true;
+              var s = t.createElement("script");
+              s.type = "text/javascript";
+              s.async = true;
+              s.crossOrigin = "anonymous";
+              s.integrity ="sha384-lBou4NmX75M6JsIU7yhPUiOXMZSbtZs5c2+lyhs7faXYDqKciQqrlJvP8MADhzOi";
+              s.src ="https://cdn.amplitude.com/libs/analytics-browser-2.17.6-min.js.gz";
+              s.onload = function () {
+                if (!e.amplitude.runQueuedFunctions) {
+                  console.log("[Amplitude] Error: could not load SDK");
+                } else {
+                  amplitude.init(window.amplitudeApiKey, {
+                    defaultTracking: true,
+                    trackingOptions: {
+                      city: true,
+                      country: true,
+                      ip_address: true,
+                      region: true,
+                      language: true,
+                      utm: true,
+                      referrer: true,
+                    },
+                  });
+                  amplitude.track("Page View", {
+                    url: window.location.href,
+                    title: document.title,
+                  });
+                  window.amplitudeReady = true;
+                  window.amplitudeOnReadyQueue.forEach(fn => fn());
+                  window.amplitudeOnReadyQueue = [];
+                }
+              };
+              var f = t.getElementsByTagName("script")[0];
+              f.parentNode.insertBefore(s, f);
+              e.amplitude = r;
+            })(window, document);
+        }
+        function onAmplitudeReady(callback) {
+            if (window.amplitudeReady) {
+                callback();
+            } else {
+                window.amplitudeOnReadyQueue.push(callback);
+            }
+        }
+        function trackPageView() {
+            if (typeof amplitude !== 'undefined') {
+                var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                var userIdentify = new amplitude.Identify();
+					userIdentify.set("Referring URL", document.referrer);
+					userIdentify.set("Current Page URL", currentURL);
+					amplitude.identify(userIdentify);
+                amplitude.track('Viewed a Page',
+                    {
+                        'Page Title': document.title.trim()
+                    });
+            }
+        }
+
+        function trackLinks() {
+            // Top Navigation
+            $(document).on('click', '.nav-link', function (e) {
+                if ($(e.currentTarget).attr('href')) {
+                    var targetUrl = $(e.currentTarget).attr('href');
+                    if (!targetUrl) {
+                        targetUrl = "";
+                    }
+                    var targetDomainUrl = targetUrl.replace('http://', '').replace('https://', '').split(/[/?#]/)[0];
+                    var title = $(e.currentTarget).text().trim().toUpperCase();
+                    if (typeof amplitude !== 'undefined' && targetDomainUrl && targetDomainUrl != '' && targetDomainUrl != window.location.hostname) {
+                        var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                        var userIdentify = new amplitude.Identify();
+                        userIdentify.set("Current Page URL", currentURL);
+                        amplitude.identify(userIdentify);
+                        amplitude.track('Clicked Link',
+                            {
+                                'Link Title': title,
+                                'Section': "Top Navigation"
+                            });
+                    }
+                }
+            });
+            // Top Main Navigation
+            $(document).on('click', '.nav-link-main', function (e) {
+                var targetUrl = $(e.currentTarget).attr('href');
+                if (!targetUrl) {
+                    targetUrl = "";
+                }
+                var targetDomainUrl = targetUrl.replace('http://', '').replace('https://', '').split(/[/?#]/)[0];
+                var title = $(e.currentTarget).text().trim();
+                if ($(e.currentTarget).attr("onclick") == 'getQuoteAndLetsTalk();') {
+                    if (typeof amplitude !== 'undefined') {
+                        var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                        var userIdentify = new amplitude.Identify();
+                        userIdentify.set("Referring URL", document.referrer);
+                        userIdentify.set("Current Page URL", currentURL);
+                        amplitude.identify(userIdentify);
+                        amplitude.track('Clicked Get A Quote');
+                    }
+                } else if (targetDomainUrl && targetDomainUrl != '' && targetDomainUrl != window.location.hostname) {
+                    title = title.split('\n')[0].toUpperCase();
+                    var section = "Main Menu";
+                    if ($(e.currentTarget).parents('#footer').length) {
+                        section = "Footer " + section;
+                    }
+                    if (typeof amplitude !== 'undefined') {
+                        var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                        var userIdentify = new amplitude.Identify();
+                        userIdentify.set("Current Page URL", currentURL);
+                        amplitude.identify(userIdentify);
+                        amplitude.track('Clicked Link',
+                            {
+                                'Link Title': title,
+                                'Section': section
+                            });
+                    }
+                }
+            });
+            $(document).on('click', 'a', function (e) {
+                var targetUrl = $(e.currentTarget).attr('href');
+                if (!targetUrl) {
+                    targetUrl = "";
+                }
+                var targetDomainUrl = targetUrl.replace('http://', '').replace('https://', '').split(/[/?#]/)[0];
+                var title = $(e.currentTarget).text().trim();
+
+                if ($(e.currentTarget).parents('#country-selector').length) {
+                    if (typeof amplitude !== 'undefined') {
+                        var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                        var userIdentify = new amplitude.Identify();
+                        userIdentify.set("Current Page URL", currentURL);
+                        amplitude.identify(userIdentify);
+                        amplitude.track('Clicked Change Country',
+                            {
+                                'Country Name': title
+                            });
+                    }
+                } else if (!($(e.currentTarget).hasClass('btn-brinks')) && !($(e.currentTarget).hasClass('nav-link-main'))
+                    && !($(e.currentTarget).hasClass('nav-link')) && !($(e.currentTarget).parents('.contact-us'))
+                    && !($(e.currentTarget).parents('.contact-email'))
+                    && targetDomainUrl && targetDomainUrl != '' && targetDomainUrl != window.location.hostname) {
+                    if (title == "Get a Quote") {
+                        if (typeof amplitude !== 'undefined') {
+                            var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                            var userIdentify = new amplitude.Identify();
+                            userIdentify.set("Current Page URL", currentURL);
+                            amplitude.identify(userIdentify);
+                            amplitude.track('Clicked Get A Quote');
+                        }
+                    } else {
+                        title = $(e.currentTarget).text().trim().toUpperCase();
+                        if (targetUrl.includes("https://arviem.auth0.com")) {
+                            targetUrl = "https://arviem.auth0.com";
+                        }
+                        var section = "N/A";
+                        if ($(e.currentTarget).parents('.main-nav-dropdown').length) {
+                            section = "Page Menu";
+                            if ($(e.currentTarget).parents('#footer').length) {
+                                section = "Footer " + section;
+                            }
+                        } else if ($(e.currentTarget).parents('#footer')) {
+                            section = "Footer Navigation"
+                        } else if ($(e.currentTarget).parents('.cookie_content').length) {
+                            section = "Cookie Consent"
+                        }
+                        if (typeof amplitude !== 'undefined') {
+                            var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                            var userIdentify = new amplitude.Identify();
+                            userIdentify.set("Current Page URL", currentURL);
+                            amplitude.identify(userIdentify);
+                            amplitude.track('Clicked Link',
+                                {
+                                    'Link Title': title,
+                                    'Section': section
+                                });
+                        }
+                    }
+                }
+            });
+        }
+
+        function trackCtaButtons() {
+            const blockList = ['SUBMIT', 'READ PROFILE', 'RETURN TO HOMEPAGE'];
+            $(document).on('click', '.btn-brinks', function (e) {
+                var title = $(e.currentTarget).text().trim().split('\n')[0].toUpperCase();
+                var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                var targetUrl = $(e.currentTarget).attr('href');
+                if (!targetUrl || targetUrl == "javascript:void(0);") {
+                    targetUrl = 'N/A';
+                }
+                if (!$(e.currentTarget).parents('form').length && currentURL.length && !blockList.includes(title)) {
+                    if (typeof amplitude !== 'undefined') {
+                        var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                        var userIdentify = new amplitude.Identify();
+                        userIdentify.set("Current Page URL", currentURL);
+                        amplitude.identify(userIdentify);
+                        amplitude.track('Clicked CTA',
+                            {
+                                'Title': title,
+                                'TargetURL': targetUrl.trim()
+                            });
+                    }
+                }
+            });
+        }
+
+        function trackSearch() {
+            if (window.location.pathname === "/search") {
+                const searchKeywords = document.getElementById("search-keywords");
+                const searchTotal = document.getElementById("search-total");
+                var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                var userIdentify = new amplitude.Identify();
+                userIdentify.set("Current Page URL", currentURL);
+                amplitude.identify(userIdentify);
+                amplitude.track('Clicked Search',
+                    {
+                        "Number of Results Returned": searchTotal.value,
+                        "Search Keywords": searchKeywords.value
+                    });
+            }
+        }
+
+        function trackFormSubmit() {
+            var eventTarget;
+            $(document).on('click', '#sendRequest', function (e) {
+                eventTarget = $(e.currentTarget);
+                if (isInternalFormSubmit) {
+                    isInternalFormSubmit = false;
+                }
+                else {
+                    e.preventDefault();
+                    var form = $(e.currentTarget).closest('form');
+                    var formName = '';
+                    var formSource = '';
+                    var formSubmitted = false;
+                    var checkBoxes = $("label :checkbox:checked");
+                    var productInterest = "";
+
+                    if (form.attr('id').includes('web2lead')) {
+                        formName = form.closest('div').find('h2').text();
+                        formSource = 'Get A Quote'
+
+                        for (let i = 0; i < checkBoxes.length; i++) {
+                            productInterest += checkBoxes[i].value + ", ";
+                        }
+                        productInterest = productInterest.slice(0, -2);
+                    } else if (form.attr('id').includes('premier')) {
+                        formName = form.closest('div').find('h3').text();
+                        formSource = 'Premier Bank Form'
+                    }
+
+                    if (formSource == 'Get A Quote') {
+                        if (typeof amplitude !== 'undefined') {
+                            var userIdentify = new amplitude.Identify();
+                            userIdentify.set("Current Page URL", Liferay.ThemeDisplay.getLayoutURL());
+                            amplitude.identify(userIdentify);
+                            amplitude.track('Submitted Contact Form',
+                                {
+                                    'City': $('#city').val(),
+                                    'Company Name': $('#company').val(),
+                                    'Email': $('#email').val(),
+                                    'Telephone Number': $('#phone').val(),
+                                    'First Name': $('#first_name').val(),
+                                    'Last Name': $('#last_name').val(),
+                                    'State/Province': $('#state').val(),
+                                    'Product Interests': productInterest
+                                });
+                            resetFormSubmit(eventTarget, formSubmitted);
+                        }
+                    } else if (formSource == 'Premier Bank Form') {
+                        if (typeof amplitude !== 'undefined') {
+                            var userIdentify = new amplitude.Identify();
+                            userIdentify.set("Current Page URL", Liferay.ThemeDisplay.getLayoutURL());
+                            amplitude.identify(userIdentify);
+                            amplitude.track('Submitted Premier Bank Form',
+                                {
+                                    'Premier Bank Representative First Name': $('#RepFirstName').val(),
+                                    'Premier Bank Representative Last Name': $('#RepLastName').val(),
+                                    'Premier Bank Representative Phone Number': $('#RepPhone').val(),
+                                    'Premier Bank Representative Email': $('#RepEmail').val(),
+                                    'Merchant Company Name': $('#Company').val(),
+                                    'Merchant Contract First Name': $('#LeadFirstName').val(),
+                                    'Merchant Contract Last Name': $('#LeadLastName').val(),
+                                    'Merchant Phone Number': $('#Phone').val(),
+                                    'Number of Location': $('#NoofLoc').val(),
+                                    'Merchant Email': $('#LeadEmail').val()
+                                });
+                            resetFormSubmit(eventTarget, formSubmitted);
+                        }
+                    } else {
+                        resetFormSubmit(eventTarget, formSubmitted);
+                    }
+                }
+            });
+
+            $(document).on('click', '.liferay-form-submit-btn', function (e) {
+                eventTarget = $(e.currentTarget);
+                if (isInternalFormSubmit) {
+                    isInternalFormSubmit = false;
+                }
+                else {
+                    e.preventDefault();
+                    let isGetAQuote = false;
+                    let getAQuoteDiv = undefined;
+                    let formSubmitted = false;
+
+                    $(this).parents()
+                        .map(function () {
+                            if (this.id === "get-a-qoute") {
+                                isGetAQuote = true;
+                                getAQuoteDiv = this;
+                            }
+                        });
+
+                    if (isGetAQuote) {
+                        let email = "";
+                        let firstName = "";
+                        let lastName = "";
+                        let phoneNumber = "";
+                        let companyName = "";
+                        let productInterest = "";
+                        let checkBoxes = $("label :checkbox:checked");
+
+                        for (let i = 0; i < checkBoxes.length; i++) {
+                            productInterest += checkBoxes[i].value + ", ";
+                        }
+                        productInterest = productInterest.slice(0, -2);
+
+                        let formName = $(getAQuoteDiv).find("form").find('h1').text().trim();
+                        let formSource = $(getAQuoteDiv).parents(".modal").length ? "Get A Quote Popup" : "Contact";
+
+                        $(getAQuoteDiv).find("form").find("input").map(function () {
+                            if ($(this).attr("name")) {
+                                if ($(this).attr("name").indexOf("FirstName") > 0) {
+                                    firstName = $(this).val();
+                                }
+                                if ($(this).attr("name").indexOf("LastName") > 0) {
+                                    lastName = $(this).val();
+                                }
+                                if ($(this).attr("name").indexOf("PhoneNumber") > 0) {
+                                    phoneNumber = $(this).val();
+                                }
+                                if ($(this).attr("name").indexOf("EmailAddress") > 0) {
+                                    email = $(this).val();
+                                }
+                                if ($(this).attr("name").indexOf("company") > 0) {
+                                    companyName = $(this).val();
+                                }
+                            }
+                        });
+                        if (typeof amplitude !== 'undefined') {
+                            var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                            var userIdentify = new amplitude.Identify();
+                            userIdentify.set("Current Page URL", Liferay.ThemeDisplay.getLayoutURL());
+                            amplitude.identify(userIdentify);
+                            amplitude.track('Submitted Contact Form',
+                                {
+                                    'City': $('#city').val(),
+                                    'Company Name': companyName,
+                                    'Email': email,
+                                    'Telephone Number': phoneNumber,
+                                    'First Name': firstName,
+                                    'Last Name': lastName,
+                                    'State/Province': $('#state').val(),
+                                    'Product Interests': productInterest
+                                });
+                            resetFormSubmit(eventTarget, formSubmitted);
+                        }
+                    }
+                }
+            });
+        }
+
+        function resetFormSubmit(eventTarget, formSubmitted) {
+            isInternalFormSubmit = true;
+            if (!formSubmitted) {
+                formSubmitted = true;
+                eventTarget.trigger('click');
+            }
+        }
+
+        function trackSolutionSelector() {
+            $(document).on('click', '.i-want-option', function (e) {
+                var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                var userIdentify = new amplitude.Identify();
+                userIdentify.set("Current Page URL", currentURL);
+                amplitude.identify(userIdentify);
+                amplitude.track('Clicked Solution Selector',
+                    {
+                        "Destination URL": e.currentTarget.firstChild.href,
+                        "I Have A": $(e.currentTarget).closest(".page-width").find(".inner").first().text().trim(),
+                        "I Want To": $(e.currentTarget).text().trim()
+                    });
+            });
+        }
+
+        function trackContact() {
+            $(document).on('change', '.contact-us-select', function (e) {
+                var selectedOption = $(this).val();
+                if (selectedOption.includes("url:")) {
+                    selectedOption = $('.contact-us-select option:selected').text().trim().replace(/ /g, '_').toLowerCase();
+                }
+                if (typeof amplitude !== 'undefined') {
+                    var currentURL = Liferay.ThemeDisplay.getLayoutURL();
+                    var userIdentify = new amplitude.Identify();
+                    userIdentify.set("Current Page URL", currentURL);
+                    amplitude.identify(userIdentify);
+                    amplitude.track('Selected Contact Option',
+                        {
+                            'Contact Option': selectedOption
+                        });
+                }
+            });
+        }
+
+        onAmplitudeReady(trackSearch);
+        onAmplitudeReady(trackLinks);
+        onAmplitudeReady(trackCtaButtons);
+        onAmplitudeReady(trackPageView);
+        onAmplitudeReady(trackFormSubmit);
+        onAmplitudeReady(trackSolutionSelector);
+        onAmplitudeReady(trackContact);
+        Liferay.on('endNavigate', function(event) {
+            onAmplitudeReady(trackPageView);
+        });
+    }
+});

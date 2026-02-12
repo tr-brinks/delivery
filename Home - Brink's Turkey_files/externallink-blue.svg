@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="12" viewBox="0 0 12 12">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="12" height="12" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="icon_util_extlink_blue" clip-path="url(#clip-path)">
+    <g id="White">
+      <path id="Path_8" data-name="Path 8" d="M16.667,16.667H7.333V7.333H12V6H7.333A1.333,1.333,0,0,0,6,7.333v9.333A1.333,1.333,0,0,0,7.333,18h9.333A1.333,1.333,0,0,0,18,16.667V12H16.667ZM13.333,6V7.333h2.39L9.17,13.887l.943.943,6.553-6.553v2.39H18V6Z" transform="translate(-6 -6)" fill="#0a4a8e"/>
+    </g>
+  </g>
+</svg>
