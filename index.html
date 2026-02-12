@@ -1,189 +1,101 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Brink's Türkiye / Бринкс Турция - Надёжные эксперты по логистике</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #fff;
-      color: #333;
-      line-height: 1.6;
-    }
-    body.ru .tr { display: none; }
-    body.tr .ru { display: none; }
-    .lang-switch {
-      position: fixed;
-      top: 15px;
-      right: 20px;
-      z-index: 9999;
-      background: #003087;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      user-select: none;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    header {
-      background: #003087;
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
-    }
-    .hero {
-      background: #003087;
-      color: white;
-      text-align: center;
-      padding: 140px 20px 100px;
-    }
-    .hero h1 {
-      font-size: 3.5em;
-      margin: 0 0 20px;
-    }
-    .hero p {
-      font-size: 1.5em;
-      max-width: 900px;
-      margin: 0 auto 40px;
-    }
-    .slide {
-      padding: 100px 20px;
-      border-bottom: 1px solid #eee;
-    }
-    .slide:nth-child(even) {
-      background: #f8f8f8;
-    }
-    .btn {
-      display: inline-block;
-      background: #c00;
-      color: white;
-      padding: 15px 40px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.2em;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background: #a00;
-    }
-    footer {
-      background: #003087;
-      color: white;
-      text-align: center;
-      padding: 50px 20px;
-      font-size: 0.95em;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brink's Turkey | Global Logistics & Security</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333; }
+        header { background: #d32f2f; color: white; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: bold; text-transform: uppercase; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+        .hero { background: #f4f4f4; padding: 100px 50px; text-align: center; border-bottom: 5px solid #d32f2f; }
+        .hero h1 { font-size: 48px; margin-bottom: 20px; }
+        .content-section { padding: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .lang-switch { background: #333; color: white; padding: 10px; text-align: right; }
+        .lang-switch span { cursor: pointer; margin-left: 10px; text-decoration: underline; }
+        footer { background: #222; color: #ccc; padding: 30px 50px; text-align: center; font-size: 14px; }
+        .hidden { display: none; }
+    </style>
 </head>
-<body class="ru">
+<body>
 
-  <!-- Переключатель языка -->
-  <div class="lang-switch" onclick="toggleLang()">Türkçe / Русский</div>
-
-  <!-- Hero блок -->
-  <div class="hero">
-    <div class="container">
-      <h1 class="tr">Güvenilir Lojistik Uzmanları</h1>
-      <h1 class="ru">Надёжные эксперты по логистике</h1>
-
-      <p class="tr">Kıymetleriniz bizimle güvende!</p>
-      <p class="ru">Ваши ценности в безопасности с нами!</p>
+    <div class="lang-switch">
+        <span onclick="switchLang('tr')">Türkçe</span>
+        <span onclick="switchLang('ru')">Русский</span>
     </div>
-  </div>
 
-  <!-- Слайды / блоки (как на оригинальном сайте) -->
-  <div class="slide">
-    <div class="container">
-      <h2 class="tr">Güvenilir Lojistik Uzmanları</h2>
-      <h2 class="ru">Надёжные эксперты по логистике</h2>
+    <header>
+        <div class="logo">Brink's</div>
+        <nav>
+            <a href="#" class="tr-text">Hizmetler</a>
+            <a href="#" class="ru-text hidden">Услуги</a>
+            <a href="#" class="tr-text">Hakkımızda</a>
+            <a href="#" class="ru-text hidden">О нас</a>
+            <a href="#" class="tr-text">İletişim</a>
+            <a href="#" class="ru-text hidden">Контакты</a>
+        </nav>
+    </header>
 
-      <p class="tr">160 yılı aşkın tecrübemizle, güvenli lojistiğin her noktasına değer katıyor, uçtan uca çözümler üretiyoruz.</p>
-      <p class="ru">Более 160 лет опыта, мы добавляем ценность на каждом этапе безопасной логистики и предлагаем комплексные решения от начала до конца.</p>
-    </div>
-  </div>
+    <section class="hero">
+        <h1 class="tr-text">Güvenli Lojistik Çözümleri</h1>
+        <h1 class="ru-text hidden">Решения для безопасной логистики</h1>
+        <p class="tr-text">Dünya genelinde nakit yönetimi ve değerli lojistik hizmetlerinde lider.</p>
+        <p class="ru-text hidden">Мировой лидер в управлении денежными средствами и логистике ценностей.</p>
+    </section>
 
-  <div class="slide">
-    <div class="container">
-      <h2 class="tr">Değerli eşyalarınızı dünyanın her noktasına güvenle taşımak için Brink's uzmanlığına güvenin!</h2>
-      <h2 class="ru">Доверьте перевозку ценных грузов в любую точку мира опыту Brink's!</h2>
+    <section class="content-section">
+        <div>
+            <h2 class="tr-text">Neden Brink's?</h2>
+            <h2 class="ru-text hidden">Почему Brink's?</h2>
+            <p class="tr-text">160 yılı aşkın tecrübemizle riskleri yönetiyor ve değerlerinizi koruyoruz.</p>
+            <p class="ru-text hidden">Имея более чем 160-летний опыт, мы управляем рисками и защищаем ваши ценности.</p>
+        </div>
+        <div>
+            <h2 class="tr-text">Hizmetlerimiz</h2>
+            <h2 class="ru-text hidden">Наши услуги</h2>
+            <ul class="tr-text">
+                <li>Zırhlı Taşıma</li>
+                <li>Nakit Yönetimi</li>
+                <li>Değerli Maden Lojistiği</li>
+            </ul>
+            <ul class="ru-text hidden">
+                <li>Бронированные перевозки</li>
+                <li>Управление наличностью</li>
+                <li>Логистика драгоценных металлов</li>
+            </ul>
+        </div>
+    </section>
 
-      <p class="tr">Dünya çapında güvenli lojistiğin pazar lideri Brink's uzmanlığına güvenin!</p>
-      <p class="ru">Brink's — мировой лидер в безопасной логистике.</p>
-    </div>
-  </div>
+    <footer>
+        <p>© 2026 Brink's Incorporated. <span class="tr-text">Tüm hakları saklıdır.</span><span class="ru-text hidden">Все права защищены.</span></p>
+    </footer>
 
-  <div class="slide">
-    <div class="container">
-      <h2 class="tr">En değerli varlıklarınızı sektör uzmanlarından oluşan bir ekibe emanet edin.</h2>
-      <h2 class="ru">Доверьте самые ценные активы команде настоящих профессионалов.</h2>
+    <script>
+        function switchLang(lang) {
+            const trElements = document.querySelectorAll('.tr-text');
+            const ruElements = document.querySelectorAll('.ru-text');
+            
+            if (lang === 'ru') {
+                trElements.forEach(el => el.classList.add('hidden'));
+                ruElements.forEach(el => el.classList.remove('hidden'));
+            } else {
+                ruElements.forEach(el => el.classList.add('hidden'));
+                trElements.forEach(el => el.classList.remove('hidden'));
+            }
+        }
+    </script>
 
-      <p class="tr">With over 160 years of experience, we add value to every point of the secure logistics supply chain, providing excellent service from origin to destination.</p>
-      <p class="ru">Более 160 лет опыта позволяют нам добавлять ценность на каждом этапе цепочки безопасной логистики и обеспечивать отличный сервис от отправки до получения.</p>
-
-      <p class="tr">As the market leader for secure worldwide logistics, we offer insight and expertise for transporting your valuables around the globe.</p>
-      <p class="ru">Как лидер рынка безопасной мировой логистики, мы предлагаем экспертизу и знания для транспортировки ваших ценностей по всему миру.</p>
-
-      <p class="tr">Trust your most valuable assets to a team of industry experts.</p>
-      <p class="ru">Доверьте самые ценные активы команде экспертов отрасли.</p>
-
-      <p class="tr">Brink's is synonymous with integrity, security, and unbeatable service.</p>
-      <p class="ru">Brink's — это синоним честности, безопасности и непревзойдённого сервиса.</p>
-
-      <a href="https://tr.brinks.com/contact" class="btn">BİZE ULAŞIN / СВЯЖИТЕСЬ С НАМИ</a>
-    </div>
-  </div>
-
-  <!-- Блок "Свяжитесь с нами" -->
-  <div class="slide" style="background:#e6f0ff;">
-    <div class="container">
-      <h2 class="tr">Bize Ulaşın</h2>
-      <h2 class="ru">Свяжитесь с нами</h2>
-
-      <p class="tr">En değerli varlıklarınızı güvendiğiniz ellere teslim edin.</p>
-      <p class="ru">Доверьте свои самые ценные активы надёжным рукам.</p>
-
-      <a href="https://tr.brinks.com/contact" class="btn">LET'S TALK / ДАВАЙТЕ ПОГОВОРИМ</a>
-    </div>
-  </div>
-
-  <footer>
-    <div class="container">
-      <p>© 2026 Brink's Türkiye / Бринкс Турция — Все права защищены.</p>
-      <p>Brink's Güvenlik Hizmetleri A.Ş. • 160+ yıllık global deneyim / глобальный опыт более 160 лет</p>
-    </div>
-  </footer>
-
-  <!-- Твой Tawk.to чат -->
-  <!--Start of Tawk.to Script-->
-  <script type="text/javascript">
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/698d81c56f9b6d1c388ae5a2/1jh8c5ri0';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
-  })();
-  </script>
-  <!--End of Tawk.to Script-->
-
-  <!-- Скрипт переключения языка -->
-  <script>
-    function toggleLang() {
-      document.body.classList.toggle('ru');
-      document.body.classList.toggle('tr');
-    }
-  </script>
-
-</body>
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/698d81c56f9b6d1c388ae5a2/1jh8c5ri0';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    </body>
 </html>
