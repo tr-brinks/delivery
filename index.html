@@ -1,101 +1,217 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brink's Turkey | Global Logistics & Security</title>
+    <title>Brink's Trust — образец</title>
+    <!-- Tawk.to Script (ваш чат) -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/698d81c56f9b6d1c388ae5a2/1jh8c5ri0';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333; }
-        header { background: #d32f2f; color: white; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 24px; font-weight: bold; text-transform: uppercase; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-        .hero { background: #f4f4f4; padding: 100px 50px; text-align: center; border-bottom: 5px solid #d32f2f; }
-        .hero h1 { font-size: 48px; margin-bottom: 20px; }
-        .content-section { padding: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .lang-switch { background: #333; color: white; padding: 10px; text-align: right; }
-        .lang-switch span { cursor: pointer; margin-left: 10px; text-decoration: underline; }
-        footer { background: #222; color: #ccc; padding: 30px 50px; text-align: center; font-size: 14px; }
-        .hidden { display: none; }
+        /* Базовые стили — имитация фирменного стиля Brink's */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: #f9fafc; color: #1a1e24; line-height: 1.5; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Шапка */
+        .header { background: #0b1a33; padding: 20px 0; color: white; border-bottom: 4px solid #ffcd00; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+        .logo span { color: #ffcd00; }
+        .nav a { color: rgba(255,255,255,0.9); text-decoration: none; margin-left: 32px; font-weight: 500; font-size: 15px; }
+        .nav a:hover { color: #ffcd00; }
+        
+        /* Языковой переключатель (имитация) */
+        .lang-switch { display: flex; gap: 12px; margin-top: 16px; justify-content: flex-end; }
+        .lang-btn { background: none; border: 1px solid #ddd; padding: 6px 16px; border-radius: 30px; font-size: 14px; cursor: pointer; background: white; }
+        .lang-btn.active { background: #0b1a33; color: white; border-color: #0b1a33; }
+        
+        /* Герой-секция (главный блок) */
+        .hero { background: linear-gradient(105deg, #0b1a33 0%, #162b4e 100%); color: white; padding: 64px 0; margin-top: 1px; border-radius: 0 0 20px 20px; }
+        .hero-grid { display: flex; align-items: center; gap: 40px; }
+        .hero h1 { font-size: 48px; font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
+        .hero h1 span { color: #ffcd00; }
+        .hero p { font-size: 18px; opacity: 0.9; margin-bottom: 32px; max-width: 600px; }
+        .btn { background: #ffcd00; color: #0b1a33; padding: 14px 36px; border: none; font-weight: 600; font-size: 16px; border-radius: 40px; cursor: pointer; transition: 0.2s; text-decoration: none; display: inline-block; }
+        .btn:hover { background: #ffd940; transform: scale(1.02); }
+        
+        /* Секции с доводами — дублируем блоки "Trusted Logistics Experts", как на оригинале */
+        .trust-section { padding: 60px 0; border-bottom: 1px solid #eaeef2; }
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 40px; }
+        .trust-card { background: white; padding: 32px; border-radius: 24px; box-shadow: 0 8px 20px rgba(0,0,0,0.02); border: 1px solid #f0f3f7; }
+        .trust-card h3 { font-size: 24px; font-weight: 600; margin-bottom: 16px; color: #0b1a33; display: flex; align-items: center; gap: 12px; }
+        .trust-card p { color: #4a5560; font-size: 16px; }
+        .badge { background: #eef6ff; padding: 4px 14px; border-radius: 40px; font-size: 14px; color: #0b1a33; font-weight: 500; display: inline-block; margin-bottom: 16px; }
+        
+        /* Заглушки для картинок (на реальном сайте — фото) */
+        .img-placeholder { background: #d9e2ef; height: 200px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #2c3e50; font-weight: 500; margin-bottom: 24px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="%23344e6c"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>'); background-repeat: no-repeat; background-position: center 30px; background-size: 48px; }
+        .img-placeholder span { background: rgba(255,255,255,0.8); padding: 8px 18px; border-radius: 40px; font-size: 14px; }
+        
+        /* Футер */
+        .footer { background: #0a1a2f; color: white; padding: 48px 0; margin-top: 60px; }
+        .footer small { opacity: 0.7; font-size: 14px; }
+        
+        /* Блок с двумя языками (контент дублируется) */
+        .bilingual-block { background: #f4f7fc; padding: 40px; border-radius: 28px; margin: 40px 0; }
+        .lang-row { display: flex; gap: 40px; flex-wrap: wrap; }
+        .lang-col { flex: 1; min-width: 280px; }
+        .lang-col h4 { border-bottom: 2px solid #ffcd00; display: inline-block; padding-bottom: 8px; margin-bottom: 24px; }
+        
+        /* Ваш чат уже подключен в <head> — он появится в правом нижнем углу */
     </style>
 </head>
 <body>
-
-    <div class="lang-switch">
-        <span onclick="switchLang('tr')">Türkçe</span>
-        <span onclick="switchLang('ru')">Русский</span>
+    <!-- ШАПКА -->
+    <div class="header">
+        <div class="container header-inner">
+            <div class="logo"><span>BRINK'S</span> TURKEY</div>
+            <div class="nav">
+                <a href="#">Главная</a>
+                <a href="#">Услуги</a>
+                <a href="#">О нас</a>
+                <a href="#">Контакты</a>
+            </div>
+        </div>
     </div>
 
-    <header>
-        <div class="logo">Brink's</div>
-        <nav>
-            <a href="#" class="tr-text">Hizmetler</a>
-            <a href="#" class="ru-text hidden">Услуги</a>
-            <a href="#" class="tr-text">Hakkımızda</a>
-            <a href="#" class="ru-text hidden">О нас</a>
-            <a href="#" class="tr-text">İletişim</a>
-            <a href="#" class="ru-text hidden">Контакты</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1 class="tr-text">Güvenli Lojistik Çözümleri</h1>
-        <h1 class="ru-text hidden">Решения для безопасной логистики</h1>
-        <p class="tr-text">Dünya genelinde nakit yönetimi ve değerli lojistik hizmetlerinde lider.</p>
-        <p class="ru-text hidden">Мировой лидер в управлении денежными средствами и логистике ценностей.</p>
-    </section>
-
-    <section class="content-section">
-        <div>
-            <h2 class="tr-text">Neden Brink's?</h2>
-            <h2 class="ru-text hidden">Почему Brink's?</h2>
-            <p class="tr-text">160 yılı aşkın tecrübemizle riskleri yönetiyor ve değerlerinizi koruyoruz.</p>
-            <p class="ru-text hidden">Имея более чем 160-летний опыт, мы управляем рисками и защищаем ваши ценности.</p>
+    <!-- Основной контейнер -->
+    <div class="container">
+        <!-- Имитация переключателя языков (визуально) -->
+        <div class="lang-switch">
+            <button class="lang-btn active">Русский</button>
+            <button class="lang-btn">Türkçe</button>
         </div>
-        <div>
-            <h2 class="tr-text">Hizmetlerimiz</h2>
-            <h2 class="ru-text hidden">Наши услуги</h2>
-            <ul class="tr-text">
-                <li>Zırhlı Taşıma</li>
-                <li>Nakit Yönetimi</li>
-                <li>Değerli Maden Lojistiği</li>
-            </ul>
-            <ul class="ru-text hidden">
-                <li>Бронированные перевозки</li>
-                <li>Управление наличностью</li>
-                <li>Логистика драгоценных металлов</li>
-            </ul>
+
+        <!-- HERO / Главный экран -->
+        <div class="hero">
+            <div class="container hero-grid">
+                <div style="flex: 1.2;">
+                    <h1><span>Trusted</span> Logistics Experts</h1>
+                    <p style="font-size: 20px;">Более 160 лет опыта. Мы добавляем ценность на каждом этапе цепи поставок, обеспечивая безопасность от отправителя до получателя.</p>
+                    <a href="#" class="btn">Связаться с экспертом</a>
+                </div>
+                <div style="flex: 0.8; text-align: center;">
+                    <!-- Имитация изображения (на реальном сайте — фото бронированного авто) -->
+                    <div class="img-placeholder" style="height: 260px; background-color: #1e3a5f;">
+                        <span style="background: #ffcd00; color: #0b1a33;">🚛 Инкассация · Логистика</span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <p>© 2026 Brink's Incorporated. <span class="tr-text">Tüm hakları saklıdır.</span><span class="ru-text hidden">Все права защищены.</span></p>
-    </footer>
+    <!-- ПЕРВАЯ СЕКЦИЯ: Блоки "Trusted Logistics Experts" (как на оригинале — многократно) -->
+    <div class="container trust-section">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <span class="badge">МИРОВОЙ ЛИДЕР БЕЗОПАСНОСТИ</span>
+            <h2 style="font-size: 36px; font-weight: 600; color: #0b1a33;">Эксперты, которым доверяют</h2>
+        </div>
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="img-placeholder" style="height: 160px;"></div>
+                <h3>📍 160+ лет доверия</h3>
+                <p>С 1859 года Brink's устанавливает стандарты безопасной логистики. Ваш груз в руках пионеров индустрии.</p>
+            </div>
+            <div class="trust-card">
+                <div class="img-placeholder" style="height: 160px;"></div>
+                <h3>🌍 Глобальное присутствие</h3>
+                <p>52 страны, 1200+ филиалов. Мы доставляем ценности туда, куда другие боятся даже предлагать.</p>
+            </div>
+            <div class="trust-card">
+                <div class="img-placeholder" style="height: 160px;"></div>
+                <h3>🛡️ Технологии и броня</h3>
+                <p>Спутниковый мониторинг, AI-аналитика рисков, специальный транспорт — всё для сохранности.</p>
+            </div>
+        </div>
+    </div>
 
+    <!-- ВТОРАЯ СЕКЦИЯ: повтор ключевого сообщения (как на исходном сайте — несколько блоков с одинаковыми заголовками) -->
+    <div class="container" style="padding: 20px 0 40px;">
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div style="background: white; padding: 32px; border-radius: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                <h3 style="font-size: 28px; color: #0b1a33; margin-bottom: 16px;">🔒 Trusted Logistics Experts</h3>
+                <p style="font-size: 18px; color: #2d3e5f;">Будучи лидером рынка безопасной международной логистики, мы предлагаем экспертизу для перевозки ваших ценностей по всему миру.</p>
+            </div>
+            <div style="background: white; padding: 32px; border-radius: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                <h3 style="font-size: 28px; color: #0b1a33; margin-bottom: 16px;">⚡ Trusted Logistics Experts</h3>
+                <p style="font-size: 18px; color: #2d3e5f;">Доверьте самые ценные активы команде отраслевых профессионалов. Brink's — синоним честности и безупречного сервиса.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- БЛОК НА ДВУХ ЯЗЫКАХ (Русский + Турецкий) 1 В 1 ПО СМЫСЛУ -->
+    <div class="container bilingual-block">
+        <div class="lang-row">
+            <!-- Русская версия -->
+            <div class="lang-col">
+                <h4 style="color: #0b1a33;">🇷🇺 Русский</h4>
+                <p style="font-size: 17px; margin-bottom: 16px;"><strong>Специалисты по логистике, заслуживающие доверия</strong></p>
+                <p style="color: #2c3e50;">Имея более 160 лет опыта, мы добавляем ценность в каждое звено цепи поставок безопасной логистики, обеспечивая превосходный сервис от отправителя до получателя. Brink's — это синоним порядочности, безопасности и непревзойденного качества.</p>
+                <p style="margin-top: 20px;">🔹 Непревзойденная безопасность<br>🔹 Подотчетность на каждом этапе<br>🔹 Доставка ценностей в любую точку мира</p>
+            </div>
+            <!-- Турецкая версия (перевод) -->
+            <div class="lang-col">
+                <h4 style="color: #0b1a33;">🇹🇷 Türkçe</h4>
+                <p style="font-size: 17px; margin-bottom: 16px;"><strong>Güvenilir Lojistik Uzmanları</strong></p>
+                <p style="color: #2c3e50;">160 yılı aşkın deneyimimizle, güvenli lojistik tedarik zincirinin her noktasında değer yaratıyor, göndericiden alıcıya mükemmel hizmet sunuyoruz. Brink's; dürüstlük, güvenlik ve rakipsiz hizmetin simgesidir.</p>
+                <p style="margin-top: 20px;">🔹 Eşsiz güvenlik önlemleri<br>🔹 Her adımda hesap verebilirlik<br>🔹 Dünya çapında değerli yük taşımacılığı</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ФРАЗА ИЗ ОРИГИНАЛА: "Trust your most valuable assets to a team of industry experts." -->
+    <div class="container" style="text-align: center; padding: 30px 0 20px;">
+        <div style="background: linear-gradient(145deg, #0b1a33, #1e3a5f); padding: 48px; border-radius: 40px; color: white;">
+            <h2 style="font-size: 38px; font-weight: 600; margin-bottom: 16px;">Trust your most valuable assets<br>to a team of industry experts.</h2>
+            <p style="font-size: 20px; opacity: 0.9; max-width: 700px; margin: 0 auto;">Brink's is synonymous with integrity, security, and unbeatable service. We provide our customers with the highest levels of security, service, and accountability in transporting valuable goods around the world.</p>
+            <div style="margin-top: 36px;">
+                <a href="#" class="btn" style="background: white; color: #0b1a33;">Запросить консультацию</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ФУТЕР -->
+    <div class="footer">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+                <div>
+                    <div class="logo" style="font-size: 24px; margin-bottom: 16px;"><span>BRINK'S</span> TURKEY</div>
+                    <p style="max-width: 300px; opacity: 0.8;">Ваш партнер №1 в безопасной логистике ценностей с 1859 года.</p>
+                </div>
+                <div>
+                    <h4 style="color: #ffcd00;">Связаться</h4>
+                    <p style="opacity: 0.8;">İstanbul, Türkiye<br>+90 (212) 555 77 00<br>info@brinks.com.tr</p>
+                </div>
+                <div>
+                    <h4 style="color: #ffcd00;">Юридическая информация</h4>
+                    <p style="opacity: 0.8; font-size: 14px;">© 2026 Brink's Turkey. Все права защищены. Данная страница — демонстрационный шаблон.</p>
+                </div>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 32px 0;">
+            <small style="opacity: 0.6;">Это ознакомительный макет, созданный по запросу пользователя. Не является официальным сайтом Brink's. Изображения заменены плейсхолдерами.</small>
+        </div>
+    </div>
+
+    <!-- Небольшой скрипт для имитации переключения языков (визуально, не меняет контент) -->
     <script>
-        function switchLang(lang) {
-            const trElements = document.querySelectorAll('.tr-text');
-            const ruElements = document.querySelectorAll('.ru-text');
-            
-            if (lang === 'ru') {
-                trElements.forEach(el => el.classList.add('hidden'));
-                ruElements.forEach(el => el.classList.remove('hidden'));
-            } else {
-                ruElements.forEach(el => el.classList.add('hidden'));
-                trElements.forEach(el => el.classList.remove('hidden'));
-            }
-        }
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // Здесь в реальном проекте была бы смена языка. В демо — просто уведомление.
+                alert('Демо-режим: смена языка интерфейса. Тексты выше — двуязычные (RU/TR).');
+            });
+        });
     </script>
-
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/698d81c56f9b6d1c388ae5a2/1jh8c5ri0';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-    </body>
+    <!-- Ваш Tawk.to чат уже подключён в head, он появится здесь автоматически -->
+</body>
 </html>
